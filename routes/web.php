@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Ramsey\Uuid\Builder\FallbackBuilder;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
+Route::fallback(function() {
+    return view('app.404');
 });
+
+Route::get('/home', function(){
+    return redirect()->route('home');
+});
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::resource('sorteio', 'SorteioController');
