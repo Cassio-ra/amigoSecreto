@@ -24,3 +24,7 @@ Route::get('/home', function(){
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('sorteio', 'SorteioController');
+Route::resource('pessoa', 'PessoaController');
+Route::group(['prefix' => 'pessoa', 'as' => 'pessoa.'], function () {
+    Route::get('add/{id}/{pessoa?}', 'PessoaController@create')->name('add');
+});

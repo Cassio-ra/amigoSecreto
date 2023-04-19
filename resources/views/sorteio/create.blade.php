@@ -24,10 +24,59 @@
         </div>
     </form>
 </div>
+@if (isset($sorteio->id))
+    <a class="col-end-11 col-span-2" href="{{ route('pessoa.add', $sorteio->id) }}">
+        <button class="border w-full h-8 border-green-700 bg-green-400 rounded-lg mt-10">Adicionar Participante</button>
+    </a>
+    <div class="col-span-10 col-start-2 mt-6">
+        <table id="table" class="display w-full">
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th></th>
+            </thead>
+            <tbody>
+                @foreach ($sorteio->pessoas as $pessoa)
+                    <tr>
+                        <td>{{ $pessoa->id }}</td>
+                        <td>{{ $pessoa->name }}</td>
+                        <td>{{ $pessoa->email }}</td>
+                        <td class="w-1">
+                            <div class="flex">
+                                <a href="{{ route('pessoa.add', [$sorteio->id, $pessoa->id]) }}" class="w-[3em] border-y-2 border-l-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white text-center rounded-l-2xl"><i class="fi fi-rr-pencil"></i></a>
+                                <a onclick="$('form#form_{{ $pessoa->id }}').submit()" class="w-[3em] border-2 border-red-400 hover:bg-red-400 text-red-400 hover:text-white hover:cursor-pointer text-center rounded-r-2xl"><i class="fi fi-rr-trash"></i></a>
+                            </div>
+                        </td>
+                        <form action="{{ route('sorteio.destroy', $pessoa->id) }}" method="post" id="form_{{ $pessoa->id }}">
+                            @method('DELETE')
+                            @csrf
+                        </form>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endif
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('js/jquery-dataTable.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                columnDefs: [
+                    {
+                        targets: [3],
+                        orderable: false
+                    }
+                ]
+            });
+        });
+    </script>
 @endpush
 
 @push('styles')
+    <link rel="stylesheet" href="{{ asset('css/jquery.dataTable.min.css') }}">
 @endpush

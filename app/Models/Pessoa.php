@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sorteio extends Model
+class Pessoa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'email',
+        'sorteio_id'
     ];
 
     protected $dates = [
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 
-    public function pessoas()
+    public function sorteio()
     {
-        return $this->hasMany(Pessoa::class);
+        return $this->belongsTo(Sorteio::class, 'sorteio_id');
     }
 }
