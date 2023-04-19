@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./resources/views/app/*.blade.php",
     "./resources/views/*.blade.php",
+    "./resources/views/**/*.blade.php",
   ],
   theme: {
     screens: {},
