@@ -11,6 +11,7 @@ class Sorteio extends Model
 
     protected $fillable = [
         'name',
+        'status_codigo',
     ];
 
     protected $dates = [
@@ -21,5 +22,10 @@ class Sorteio extends Model
     public function pessoas()
     {
         return $this->hasMany(Pessoa::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(SorteioStatus::class, 'status_codigo', 'codigo');
     }
 }

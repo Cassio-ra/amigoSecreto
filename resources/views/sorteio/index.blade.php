@@ -13,7 +13,6 @@
         <thead>
             <th>Id</th>
             <th>Nome</th>
-            <th>Status</th>
             <th></th>
         </thead>
         <tbody>
@@ -21,7 +20,6 @@
                 <tr>
                     <td>{{ $sorteio->id }}</td>
                     <td>{{ $sorteio->name }}</td>
-                    <td>{{ $sorteio->status->desc }}</td>
                     <td class="w-1">
                         <div class="flex">
                             <a href="{{ route('sorteio.edit', $sorteio->id) }}" class="w-[3em] border-y-2 border-l-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white text-center rounded-l-2xl"><i class="fi fi-rr-pencil"></i></a>
@@ -47,7 +45,7 @@
             $('#table').DataTable({
                 columnDefs: [
                     {
-                        targets: [2, 3],
+                        targets: [2],
                         orderable: false
                     }
                 ]

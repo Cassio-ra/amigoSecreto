@@ -9,23 +9,23 @@
         <div class="ml-2 my-2 col-span-3">
             <label class="block tracking-wide text-gray-700 ml-1" for="name">Nome</label>
             @if (isset($pessoa->id))
-                <input id="name" name="name" value="{{ old('name') ?? $pessoa->name }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
+                <input id="name" name="name" required value="{{ old('name') ?? $pessoa->name }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @else
-                <input id="name" name="name" value="{{ old('name') }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
+                <input id="name" name="name" required value="{{ old('name') }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @endif
             @if ($errors->has('name'))
-                <p class="text-red-500 text-xs italic"></p>
+                <p class="text-red-500 text-xs italic">{{ $errors->first('name') }}</p>
             @endif
         </div>
         <div class="ml-2 my-2 col-span-3">
             <label class="block tracking-wide text-gray-700 ml-1" for="email">Email</label>
             @if (isset($pessoa->id))
-                <input id="email" name="email" value="{{ old('email') ?? $pessoa->email }}" placeholder="Insira o Email do participante" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
+                <input id="email" name="email" required type="email" value="{{ old('email') ?? $pessoa->email }}" placeholder="Insira o Email do participante" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @else
-                <input id="email" name="email" value="{{ old('email') }}" placeholder="Insira o Email do participante" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
+                <input id="email" name="email" required type="email" value="{{ old('email') }}" placeholder="Insira o Email do participante" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @endif
             @if ($errors->has('email'))
-                <p class="text-red-500 text-xs italic"></p>
+                <p class="text-red-500 text-xs italic">{{ $errors->first('email') }}</p>
             @endif
         </div>
         @if (isset($pessoa->id))

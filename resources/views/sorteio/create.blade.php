@@ -10,10 +10,10 @@
             @if (isset($sorteio->id))
                 <input id="name" name="name" value="{{ old('name') ?? $sorteio->name }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @else
-                <input id="name" name="name" value="{{ old('name') }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
+                <input id="name" name="name" required value="{{ old('name') }}" placeholder="Insira o Nome do Sorteio" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white">
             @endif
             @if ($errors->has('name'))
-                <p class="text-red-500 text-xs italic"></p>
+                <p class="text-red-500 text-xs italic">{{ $errors->first('name') }}</p>
             @endif
         </div>
         @if (isset($sorteio->id))

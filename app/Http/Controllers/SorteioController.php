@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SorteioRequest;
 use App\Models\Pessoa;
 use App\Models\Sorteio;
+use App\Models\SorteioStatus;
 use Illuminate\Http\Request;
 
 class SorteioController extends Controller
 {
     public function index()
     {
-        dd('indequis');
+        $sorteios = Sorteio::where('status_codigo', SorteioStatus::SORTEADO)->get();
+        return view('sorteio.index', compact('sorteios'));
     }
 
     public function create()
@@ -18,13 +21,14 @@ class SorteioController extends Controller
         return view('sorteio.create');
     }
 
-    public function store(Request $request)
+    public function store(SorteioRequest $request)
     {
         if ($request->get('id')) {
             $sorteio = Sorteio::find($request->get('id'));
 
             $sorteio->update($request->all());
         }else{
+            $request->request->add(['status_codigo' => SorteioStatus::AGUARDANDO_SORTEIO]);
             $sorteio = Sorteio::create($request->all());
         }
 
