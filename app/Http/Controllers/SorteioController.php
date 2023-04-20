@@ -41,6 +41,7 @@ class SorteioController extends Controller
 
     public function destroy(Sorteio $sorteio)
     {
+        $sorteio->pessoas()->delete();
         $sorteio->delete();
 
         return redirect()->route('home');
