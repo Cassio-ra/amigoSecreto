@@ -45,13 +45,9 @@
                         <td class="w-1">
                             <div class="flex">
                                 <a href="{{ route('pessoa.add', [$sorteio->id, $pessoa->id]) }}" class="w-[3em] border-y-2 border-l-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white text-center rounded-l-2xl"><i class="fi fi-rr-pencil"></i></a>
-                                <a onclick="$('form#form_{{ $pessoa->id }}').submit()" class="w-[3em] border-2 border-red-400 hover:bg-red-400 text-red-400 hover:text-white hover:cursor-pointer text-center rounded-r-2xl"><i class="fi fi-rr-trash"></i></a>
+                                <a href="{{ route('pessoa.destroy', $pessoa->id) }}" data-confirm-delete="true" class="w-[3em] border-2 border-red-400 hover:bg-red-400 text-red-400 hover:text-white hover:cursor-pointer text-center rounded-r-2xl"><i class="fi fi-rr-trash"></i></a>
                             </div>
                         </td>
-                        <form action="{{ route('sorteio.destroy', $pessoa->id) }}" method="post" id="form_{{ $pessoa->id }}">
-                            @method('DELETE')
-                            @csrf
-                        </form>
                     </tr>
                 @endforeach
             </tbody>

@@ -24,14 +24,11 @@
                     <td>{{ $sorteio->status->desc }}</td>
                     <td class="w-1">
                         <div class="flex">
-                            <a href="{{ route('sorteio.edit', $sorteio->id) }}" class="w-[3em] border-y-2 border-l-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white text-center rounded-l-2xl"><i class="fi fi-rr-pencil"></i></a>
-                            <a onclick="$('form#form_{{ $sorteio->id }}').submit()" class="w-[3em] border-2 border-red-400 hover:bg-red-400 text-red-400 hover:text-white hover:cursor-pointer text-center rounded-r-2xl"><i class="fi fi-rr-trash"></i></a>
+                            <button onclick="shuffleSorteio({{ $sorteio->id }})" class="w-[3em] border-y-2 border-l-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white text-center rounded-l-2xl"><i class="fi fi-rr-shuffle"></i></button>
+                            <a href="{{ route('sorteio.edit', $sorteio->id) }}" class="w-[3em] border-y-2 border-l-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white text-center"><i class="fi fi-rr-pencil"></i></a>
+                            <a href="{{ route('sorteio.destroy', $sorteio->id) }}" data-confirm-delete="true" class="w-[3em] border-2 border-red-400 hover:bg-red-400 text-red-400 hover:text-white hover:cursor-pointer text-center rounded-r-2xl"><i class="fi fi-rr-trash"></i></a>
                         </div>
                     </td>
-                    <form action="{{ route('sorteio.destroy', $sorteio->id) }}" method="post" id="form_{{ $sorteio->id }}">
-                        @method('DELETE')
-                        @csrf
-                    </form>
                 </tr>
             @endforeach
         </tbody>
@@ -53,6 +50,12 @@
                 ]
             });
         });
+    </script>
+
+    <script>
+        function shuffleSorteio(id){
+            console.log(id);
+        }
     </script>
 @endpush
 
