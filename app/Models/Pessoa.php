@@ -12,7 +12,8 @@ class Pessoa extends Model
     protected $fillable = [
         'name',
         'email',
-        'sorteio_id'
+        'sorteio_id',
+        'sorteado_id'
     ];
 
     protected $dates = [
@@ -23,5 +24,10 @@ class Pessoa extends Model
     public function sorteio()
     {
         return $this->belongsTo(Sorteio::class, 'sorteio_id');
+    }
+
+    public function sorteado()
+    {
+        return $this->belongsTo(Pessoa::class, 'sorteado_id');
     }
 }

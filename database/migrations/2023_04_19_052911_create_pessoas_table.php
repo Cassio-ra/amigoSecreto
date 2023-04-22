@@ -19,6 +19,8 @@ class CreatePessoasTable extends Migration
             $table->string('email');
             $table->unsignedBigInteger('sorteio_id');
             $table->foreign('sorteio_id')->references('id')->on('sorteios');
+            $table->unsignedBigInteger('sorteado_id')->nullable();
+            $table->foreign('sorteado_id')->references('id')->on('pessoas');
             $table->timestamps();
         });
     }
