@@ -6,9 +6,11 @@ composer install
 
 Para atualizar os pacotes do sistema. Em seguida utilize o comando:
 
-npm run build
+npm run install
 
 Então configure a conexão com o Banco de dados de preferencia na .env e utilize os comandos:
+
+php artisan config:cache
 
 php artisan migrate
 php artisan db:seed
