@@ -6,7 +6,7 @@ composer install;
 
 Em seguida utilize o comando:
 
-npm run install;
+npm install;
 
 Então configure a conexão com o Banco de dados de preferencia na .env e utilize os comandos:
 
